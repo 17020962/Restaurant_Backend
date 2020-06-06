@@ -21,7 +21,14 @@ public class JwtUserDetailsService implements UserDetailsService {
                         Arrays.stream("ROLE_ADMIN".split(","))
                                 .map(SimpleGrantedAuthority::new)
                                 .collect(Collectors.toList()));
-        } else {
+        }
+        else if("user".equals(username)){
+            return new User("user", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+                    Arrays.stream("ROLE_USER".split(","))
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList()));
+        }
+        else {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
