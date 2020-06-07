@@ -40,14 +40,12 @@ public class DishController {
     @GetMapping(value = "/pub/get-all-dish")
     public List<Dish> getAllDish() {
         List<Dish> allDish = new ArrayList<>();
-        allDish = dishRepository.getAllDish();
+        allDish = dishRepository.findAll();
         return allDish;
     }
 
     public String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
-
     public String UPLOAD = "http://localhost:8080/files";
-
     @CrossOrigin
     @PostMapping(path = "/pub/add-dish", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
